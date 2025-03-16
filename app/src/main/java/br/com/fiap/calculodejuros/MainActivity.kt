@@ -10,7 +10,9 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -69,14 +71,26 @@ fun JurosScreen() {
         contentAlignment = Alignment.Center
     ) {
         Column() {
-            Text(
-                text = "Cálculo de Juros Simples",
-                modifier = Modifier.fillMaxWidth(),
-                fontSize = 20.sp,
-                color = Color.Red,
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center
-            )
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(60.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = Color(0xFF4CAF50),
+                )
+            ) {
+                Text(
+                    text = "Cálculo de Juros Simples",
+                    fontSize = 20.sp,
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(16.dp)
+                        .wrapContentSize(Alignment.Center)
+                )
+            }
             Spacer(modifier = Modifier.height(32.dp))
             // Formulário para entrada de dados
             Card(
@@ -89,22 +103,7 @@ fun JurosScreen() {
                         fontWeight = FontWeight.Bold
                     )
                     // Caixas de entrada da aplicação
-//                    OutlinedTextField(
-//                        value = capital,
-//                        onValueChange = { capital = it },
-//                        modifier = Modifier
-//                            .fillMaxWidth()
-//                            .padding(top = 16.dp),
-//                        placeholder = {
-//                            Text(text = "Quanto deseja investir?")
-//                        },
-//                        label = {
-//                            Text(text = "Valor do investimento")
-//                        },
-//                        keyboardOptions = KeyboardOptions(
-//                            keyboardType = KeyboardType.Decimal
-//                        )
-//                    )
+
                     CaixaDeEntrada(
                         label = "Valor do investimento",
                         value = capital,
@@ -135,38 +134,7 @@ fun JurosScreen() {
                             .padding(top = 16.dp),
                         atualizarValor = { tempo = it }
                     )
-//                    OutlinedTextField(
-//                        value = taxa,
-//                        onValueChange = { taxa = it },
-//                        modifier = Modifier
-//                            .fillMaxWidth()
-//                            .padding(top = 16.dp),
-//                        placeholder = {
-//                            Text(text = "Qual a taxa de juros mensal?")
-//                        },
-//                        label = {
-//                            Text(text = "Taxa de juros mensal")
-//                        },
-//                        keyboardOptions = KeyboardOptions(
-//                            keyboardType = KeyboardType.Decimal
-//                        )
-//                    )
-//                    OutlinedTextField(
-//                        value = tempo,
-//                        onValueChange = { tempo = it },
-//                        modifier = Modifier
-//                            .fillMaxWidth()
-//                            .padding(top = 16.dp),
-//                        placeholder = {
-//                            Text(text = "Qual o tempo em meses?")
-//                        },
-//                        label = {
-//                            Text(text = "Período em meses")
-//                        },
-//                        keyboardOptions = KeyboardOptions(
-//                            keyboardType = KeyboardType.Decimal
-//                        )
-//                    )
+//
                     Button(
                         onClick = {
                             juros = calcularJuros(
@@ -180,8 +148,12 @@ fun JurosScreen() {
                             )
                         },
                         modifier = Modifier
-                            .fillMaxWidth()
                             .padding(top = 32.dp)
+                            .height(48.dp),
+                        colors = androidx.compose.material3.ButtonDefaults.buttonColors(Color(
+                            0xFF286E2C
+                        )
+                        )
                     ) {
                         Text(text = "CALCULAR")
                     }
@@ -190,56 +162,6 @@ fun JurosScreen() {
             Spacer(modifier = Modifier.height(16.dp))
             // Resultado da aplicação
             CardResultado(juros = juros, montante = montante)
-//            Card(
-//                modifier = Modifier
-//                    .fillMaxWidth(),
-//                colors = CardDefaults.cardColors(
-//                    containerColor = Color(0xFF4CAF50)
-//                )
-//            ) {
-//                Column(
-//                    modifier = Modifier
-//                        //.fillMaxSize()
-//                        .padding(16.dp)
-//                ) {
-//                    Text(
-//                        text = "Resultado",
-//                        fontSize = 18.sp,
-//                        fontWeight = FontWeight.Bold,
-//                        color = Color.White
-//                    )
-//                    Spacer(modifier = Modifier.height(16.dp))
-//                    Row(modifier = Modifier.fillMaxWidth()) {
-//                        Text(
-//                            text = "Juros",
-//                            modifier = Modifier.padding(end = 8.dp),
-//                            fontSize = 16.sp,
-//                            fontWeight = FontWeight.Bold
-//                        )
-//                        Text(
-//                            text = juros.toString(),
-//                            modifier = Modifier.padding(end = 8.dp),
-//                            fontSize = 16.sp,
-//                            fontWeight = FontWeight.Bold,
-//                            color = Color.White
-//                        )
-//                    }
-//                    Spacer(modifier = Modifier.height(8.dp))
-//                    Row(modifier = Modifier.fillMaxWidth()) {
-//                        Text(
-//                            text = "Montante",
-//                            modifier = Modifier.padding(end = 8.dp),
-//                            fontSize = 16.sp,
-//                            fontWeight = FontWeight.Bold
-//                        )
-//                        Text(
-//                            text = montante.toString(),
-//                            modifier = Modifier.padding(end = 8.dp),
-//                            fontSize = 16.sp,
-//                            fontWeight = FontWeight.Bold,
-//                            color = Color.White
-//                        )
-//                    }
         }
     }
 }
