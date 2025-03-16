@@ -21,6 +21,7 @@ fun CaixaDeEntrada(
         value = value,
         onValueChange =  atualizarValor,
         modifier = modifier,
+        singleLine = true,
         label = { Text(text = label) },
         placeholder = { Text(text = placeholder) },
         keyboardOptions = KeyboardOptions(keyboardType = keyboardType)
